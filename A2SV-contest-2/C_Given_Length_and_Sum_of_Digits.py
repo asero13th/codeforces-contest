@@ -16,7 +16,7 @@ def smallest(m,s):
             s = 0
     ans[0] = s + 1
     ans = list(map(str, ans))
-    ans[0] = "".join(sorted(ans[0]) )
+   
     return int("".join(map(str, ans))) 
 
 
@@ -35,9 +35,13 @@ def largest(m,s):
 
 if __name__ == "__main__":
     m,s = map(int, input().split())
-    if s == 0 and m > 0:
+    
+    if m == 1 and s == 0:
+        print(0,0)
+    elif s == 0:
         print(-1,-1)
-    elif (s//9) > m or (s == 0 and m > 1):
+
+    elif (s) > m * 9:
         print(-1,-1)
     else:
         ans = [smallest(m,s), largest(m,s)]

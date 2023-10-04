@@ -1,46 +1,44 @@
-import sys
-import threading
+def longestPalindromeSubsequence(s: str) -> int:
+    n = len(s)
+    dp = [[False] * n for _ in range(n)]
+    start = 0
+    max_len = 1
 
-input = sys.stdin.readline
-from collections import Counter
-import itertools
-from math import ceil, floor, log
-from collections import defaultdict
-from collections import deque
+    for i in range(n):
+        dp[i][i] = True
 
+    for i in range(n - 1, -1, -1):
+        for j in range(i + 1, n):
+            if s[i] == s[j]:
+                dp[i][j] = dp[i + 1][j - 1] + 2
+            else:
+                dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])
 
-#        ---- Input Functions ----      #
+    return dp[0][n - 1]
+def longestPalindromeSubstring(s: str) -> str:
+    n = len(s)
+    dp = [[False] * n for _ in range(n)]
+    start = 0
+    max_length = 1
 
+    # Single character substrings are palindromes
+    for i in range(n):
+        dp[i][i] = True
 
-def inp():
-    return int(input())
-def inlt():
-    return list(map(int, input().split()))
-def insr():
-    s = input()
-    return list(s[:len(s) - 1])
-def invr():
-    return map(int, input().split())
-def solve():
-    n = inp()
-    nums = inlt()
+    # Check for palindromic substrings of length 2
+    for i in range(n - 1):
+        if s[i] == s[i + 1]:
+            dp[i][i + 1] = True
+            start = i
+            max_length = 2
 
-    ans = 0
+    # Check for palindromic substrings of length greater than 2
+    for length in range(3, n + 1):
+        for i in range(n - length + 1):
+            j = i + length - 1
+            if s[i] == s[j] and dp[i + 1][j - 1]:
+                dp[i][j] = True
+                start = i
+                max_length = length
 
-    for i in range(1, n - 1):
-        if nums[i - 1] < nums[i] > nums[i + 1]:
-            ans += 1
-        elif nums[i - 1] > nums[i] < nums[i + 1]:
-            ans += 1
-    return ans
-
-
-    
-if __name__ == "__main__":
-
-    print(solve())
-# sys.setrecursionlimit(1 << 30)
-# threading.stack_size(1 << 27)
-# main_thread = threading.Thread(target=solve)
-# main_thread.start()
-# main_thread.join()
+    return s[start:start + max_length]

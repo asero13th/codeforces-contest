@@ -1,0 +1,1 @@
+{"name":"Local: index","url":"c:\\competitive-programming\\A2SV-contest-2\\index.py","tests":[{"id":1696324002271,"input":"4 5\n1 2 10\n2 3 10\n1 3 100\n3 1 -10\n2 3 1","output":"0 10 11 30000"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\competitive-programming\\A2SV-contest-2\\index.py","group":"local","local":true}
