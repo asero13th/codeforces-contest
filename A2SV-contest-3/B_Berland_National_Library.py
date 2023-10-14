@@ -1,8 +1,5 @@
 
 
-
-
-
 def solve():
     n = int(input())
     hashmap = {}
@@ -22,4 +19,3 @@ def solve():
     return ans
 
 print(solve())
-
